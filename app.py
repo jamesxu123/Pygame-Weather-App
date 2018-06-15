@@ -12,7 +12,7 @@ heightText = menuFont.render('sample',True,(0,255,0))
 startPos = (27+5,80+10)
 endPos = (306+5,600+10)
 lat,long = (0,0)
-##weather = requests.get('https://api.darksky.net/forecast/b8e5c750132fea6cfea17f7284b91e95/%s,%s' %(lat,long))
+##weather = requests.get('https://api.darksky.net/forecast/PROTECTED_KEY/%s,%s' %(lat,long))
 ##weather = json.loads(weather.text)
 weather = pickle.load(open('weather.pckl','rb'))
 menuIcon = image.load('menu.png')
@@ -72,11 +72,11 @@ while running:
         menuMode = False
     if mode not in menuItems[:2]:
         if citiesDarkSky[mode] == '':
-            cityWeather = requests.get('https://api.darksky.net/forecast/b8e5c750132fea6cfea17f7284b91e95/%s,%s' %(cities[mode][0],cities[mode][1]))
+            cityWeather = requests.get('https://api.darksky.net/forecast/PROTECTED_KEY/%s,%s' %(cities[mode][0],cities[mode][1]))
             citiesDarkSky[mode] = json.loads(cityWeather.text)
         renderWeather(citiesDarkSky[mode])
     elif mode == 'Add Locations':
-        geocoder = Geocoder(access_token='pk.eyJ1IjoieHVqYW1lczAwNyIsImEiOiJjamduc2R3Nmwwc3psMzBxc2dtMjI5aDZvIn0.1kHtKbs9h_rVW63x2RPf2w')
+        geocoder = Geocoder(access_token='PROTECTED_KEY')
         dialog = Surface((endPos[0]-startPos[0]-30,40))
         dialog.set_alpha(160)
         dialog.fill((42,82,152))
